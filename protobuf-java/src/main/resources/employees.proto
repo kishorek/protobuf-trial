@@ -1,0 +1,29 @@
+syntax = "proto2";
+
+package tutorial;
+
+option java_multiple_files = true;
+option java_package = "com.kishorek.protos";
+option java_outer_classname = "EmployeeDBProtos";
+
+message Employee {
+  optional string name = 1;
+  optional int32 id = 2;
+  optional string email = 3;
+
+  enum EmpType {
+    PERMANENT = 0;
+    CONTRACT = 1;
+  }
+
+  message EmploymentInfo {
+    optional string dept = 1;
+    optional EmpType type = 2 [default = PERMANENT];
+  }
+
+  optional EmploymentInfo info = 4;
+}
+
+message EmployeeDB {
+  repeated Employee employee = 1;
+}
